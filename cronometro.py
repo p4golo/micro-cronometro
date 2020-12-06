@@ -26,45 +26,45 @@ def mostrarNumeros(numero,posicion):
         for i in range(FILAS):
             display.set_pixel(posicion + 1,i,int(numero[1][i]))
 
+def obtenerDecenas(numero):
+    decenas = numero // 10
+    decenas = fonts[decenas].split(":")
+    return decenas
+
+def obtenerUnidades(numero):
+    unidades = numero % 10
+    unidades = fonts[unidades].split(":")
+    return unidades
 
 def mostrarSegundos(segundos):
     if segundos > 9:
-        decenas = segundos // 10
-        unidades = segundos % 10
-        decenas = fonts[decenas].split(":")
-        unidades = fonts[unidades].split(":")
+        decenas = obtenerDecenas(segundos)
+        unidades = obtenerUnidades(segundos)
         mostrarNumeros(decenas,PRIMERACOLUMNA)
         mostrarNumeros(unidades,TERCERACOLUMNA)
     else:
-        unidades = fonts[segundos]
-        unidades = unidades.split(":")
+        unidades = obtenerUnidades(segundos)
         mostrarNumeros(unidades,TERCERACOLUMNA)
 
 def mostrarHoras(horas):
     if horas > 9:
-        decenas = horas // 10
-        unidades = horas % 10
-        decenas = fonts[decenas].split(":")
-        unidades = fonts[unidades].split(":")
+        decenas = obtenerDecenas(horas)
+        unidades = obtenerUnidades(horas)
         mostrarNumeros(decenas,PRIMERACOLUMNA)
         mostrarNumeros(unidades,TERCERACOLUMNA)
     else:
-        unidades = fonts[horas]
-        unidades = unidades.split(":")
+        unidades = obtenerUnidades(horas)
         mostrarNumeros(unidades,TERCERACOLUMNA)
     sleep(1000)
 
 def mostrarMinutos(minutos):
     if minutos > 9:
-        decenas = minutos // 10
-        unidades = minutos % 10
-        decenas = fonts[decenas].split(":")
-        unidades = fonts[unidades].split(":")
+        decenas = obtenerDecenas(minutos)
+        unidades = obtenerUnidades(minutos)
         mostrarNumeros(decenas,PRIMERACOLUMNA)
         mostrarNumeros(unidades,TERCERACOLUMNA)
     else:
-        unidades = fonts[minutos]
-        unidades = unidades.split(":")
+        unidades = obtenerUnidades(minutos)
         mostrarNumeros(unidades,TERCERACOLUMNA)
     sleep(1000)
 
