@@ -15,21 +15,30 @@ fonts = (zero, one, two, three, four, five, six, seven, eight, nine)
 
 columnas = 5
 filas = 5
+primeracolumna = 0
+terceracolumna = 3
 
-def mostrarNumeros():
-    pass
+
+def mostrarNumeros(numero,posicion):
+        for i in range(filas):
+            display.set_pixel(posicion,i,int(numero[0][i]))
+        for i in range(filas):
+            display.set_pixel(posicion + 1,i,int(numero[1][i]))
+
 
 def mostrarSegundos(segundos):
     if segundos > 9:
         decenas = segundos // 10
         unidades = segundos % 10
+        decenas = fonts[decenas].split(":")
+        unidades = fonts[unidades].split(":")
+        mostrarNumeros(decenas,primeracolumna)
+        mostrarNumeros(unidades,terceracolumna)
+
     else:
         unidades = fonts[segundos]
         unidades = unidades.split(":")
-        for i in range(filas):
-            display.set_pixel(3,i,int(unidades[0][i])) #Esto es lo que hay que usar para printear
-        for i in range(filas):
-            display.set_pixel(4,i,int(unidades[1][i]))
+        mostrarNumeros(unidades,terceracolumna)
 
 def mostrarHoras(segundos):
     pass
@@ -49,7 +58,7 @@ def main():
             mostrarHoras(segundos)
         if button_b.is_pressed():
             mostrarMinutos(segundos)
-        mostrarNumeros(segundos)
+        mostrarSegundos(segundos)
         sleep(1000) # Para que el bucle tarde un segundo en hacerse
         segundos += 1
         display.clear()
