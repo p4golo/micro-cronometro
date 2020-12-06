@@ -1,5 +1,10 @@
 from microbit import *
 
+COLUMNAS = 5
+FILAS = 5
+PRIMERACOLUMNA = 0
+TERCERACOLUMNA = 3
+
 zero = "99999:99999"
 one = "00000:99999"
 two = "90999:99909"
@@ -13,16 +18,12 @@ nine = "99900:99999"
 
 fonts = (zero, one, two, three, four, five, six, seven, eight, nine)
 
-columnas = 5
-filas = 5
-primeracolumna = 0
-terceracolumna = 3
 
 
 def mostrarNumeros(numero,posicion):
-        for i in range(filas):
+        for i in range(FILAS):
             display.set_pixel(posicion,i,int(numero[0][i]))
-        for i in range(filas):
+        for i in range(FILAS):
             display.set_pixel(posicion + 1,i,int(numero[1][i]))
 
 
@@ -32,18 +33,18 @@ def mostrarSegundos(segundos):
         unidades = segundos % 10
         decenas = fonts[decenas].split(":")
         unidades = fonts[unidades].split(":")
-        mostrarNumeros(decenas,primeracolumna)
-        mostrarNumeros(unidades,terceracolumna)
+        mostrarNumeros(decenas,PRIMERACOLUMNA)
+        mostrarNumeros(unidades,TERCERACOLUMNA)
 
     else:
         unidades = fonts[segundos]
         unidades = unidades.split(":")
-        mostrarNumeros(unidades,terceracolumna)
+        mostrarNumeros(unidades,TERCERACOLUMNA)
 
-def mostrarHoras(segundos):
+def mostrarHoras(horas):
     pass
 
-def mostrarMinutos(segundos):
+def mostrarMinutos(minutos):
     pass
 
 def main():
@@ -53,7 +54,6 @@ def main():
     horas = 0
 
     while True:
-        #display.set_pixel() Esto es lo que hay que usar para printear
         if button_a.is_pressed():
             mostrarHoras(segundos)
         if button_b.is_pressed():
@@ -61,6 +61,12 @@ def main():
         mostrarSegundos(segundos)
         sleep(1000) # Para que el bucle tarde un segundo en hacerse
         segundos += 1
+        if segundos == 60:
+            segundos = 0
+            minutos += 1
+        if minutos == 60:
+            minutos = 0
+            horas += 1
         display.clear()
 
 if __name__ == "__main__":
