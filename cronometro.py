@@ -35,17 +35,38 @@ def mostrarSegundos(segundos):
         unidades = fonts[unidades].split(":")
         mostrarNumeros(decenas,PRIMERACOLUMNA)
         mostrarNumeros(unidades,TERCERACOLUMNA)
-
     else:
         unidades = fonts[segundos]
         unidades = unidades.split(":")
         mostrarNumeros(unidades,TERCERACOLUMNA)
 
 def mostrarHoras(horas):
-    pass
+    if horas > 9:
+        decenas = horas // 10
+        unidades = horas % 10
+        decenas = fonts[decenas].split(":")
+        unidades = fonts[unidades].split(":")
+        mostrarNumeros(decenas,PRIMERACOLUMNA)
+        mostrarNumeros(unidades,TERCERACOLUMNA)
+    else:
+        unidades = fonts[horas]
+        unidades = unidades.split(":")
+        mostrarNumeros(unidades,TERCERACOLUMNA)
+    sleep(1000)
 
 def mostrarMinutos(minutos):
-    pass
+    if minutos > 9:
+        decenas = minutos // 10
+        unidades = minutos % 10
+        decenas = fonts[decenas].split(":")
+        unidades = fonts[unidades].split(":")
+        mostrarNumeros(decenas,PRIMERACOLUMNA)
+        mostrarNumeros(unidades,TERCERACOLUMNA)
+    else:
+        unidades = fonts[minutos]
+        unidades = unidades.split(":")
+        mostrarNumeros(unidades,TERCERACOLUMNA)
+    sleep(1000)
 
 def main():
 
@@ -55,9 +76,13 @@ def main():
 
     while True:
         if button_a.is_pressed():
-            mostrarHoras(segundos)
+            mostrarHoras(horas)
+            segundos += 1
+            display.clear()
         if button_b.is_pressed():
-            mostrarMinutos(segundos)
+            mostrarMinutos(minutos)
+            segundos += 1
+            display.clear()
         mostrarSegundos(segundos)
         sleep(1000) # Para que el bucle tarde un segundo en hacerse
         segundos += 1
