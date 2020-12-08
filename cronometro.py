@@ -5,6 +5,8 @@ PRIMERACOLUMNA = 0
 TERCERACOLUMNA = 3
 DISPLAYAPAGADO = "00000:00000"
 CAMBIOTIEMPO = 60
+UNSEGUNDO = 1000
+AUMENTOTIEMPO = 1
 
 zero = "99999:99999"
 one = "00000:99999"
@@ -79,22 +81,22 @@ def main():
     while True:
         if button_a.is_pressed():
             mostrarTiempo(horas)
-            segundos += 1
-            sleep(1000)
+            segundos += AUMENTOTIEMPO
+            sleep(UNSEGUNDO)
         if button_b.is_pressed():
             mostrarTiempo(minutos)
-            segundos += 1
-            sleep(1000)
+            segundos += AUMENTOTIEMPO
+            sleep(UNSEGUNDO)
         limpiarDisplay()
         mostrarTiempo(segundos)
-        sleep(1000) # Para que el bucle tarde un segundo en hacerse
-        segundos += 1 # Aumentamos el valor de los segundos
+        sleep(UNSEGUNDO) # Para que el bucle tarde un segundo en hacerse
+        segundos += AUMENTOTIEMPO # Aumentamos el valor de los segundos
         if segundos == CAMBIOTIEMPO:
             segundos = 0
-            minutos += 1
+            minutos += AUMENTOTIEMPO
         if minutos == CAMBIOTIEMPO:
             minutos = 0
-            horas += 1
+            horas += AUMENTOTIEMPO
         limpiarDisplay()
 
 if __name__ == "__main__":
