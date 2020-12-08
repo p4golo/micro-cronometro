@@ -4,6 +4,7 @@ FILAS = 5
 PRIMERACOLUMNA = 0
 TERCERACOLUMNA = 3
 DISPLAYAPAGADO = "00000:00000"
+CAMBIOTIEMPO = 60
 
 zero = "99999:99999"
 one = "00000:99999"
@@ -88,10 +89,10 @@ def main():
         mostrarTiempo(segundos)
         sleep(1000) # Para que el bucle tarde un segundo en hacerse
         segundos += 1 # Aumentamos el valor de los segundos
-        if segundos == 60:
+        if segundos == CAMBIOTIEMPO:
             segundos = 0
             minutos += 1
-        if minutos == 60:
+        if minutos == CAMBIOTIEMPO:
             minutos = 0
             horas += 1
         limpiarDisplay()
