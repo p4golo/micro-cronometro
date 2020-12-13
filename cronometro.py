@@ -95,8 +95,12 @@ def main():
             segundos = 0
             minutos += AUMENTOTIEMPO
         if minutos == CAMBIOTIEMPO:
-            minutos = 0
-            horas += AUMENTOTIEMPO
+            if horas < 99:
+                minutos = 0
+                horas += AUMENTOTIEMPO
+            else: # Si llega al maximo del cronometro, se queda en 99 horas 59 minutos y siguen contando los segundos
+                horas = 99
+                minutos = 59
         limpiarDisplay()
 
 if __name__ == "__main__":
